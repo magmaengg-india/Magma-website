@@ -49,7 +49,7 @@ h1, h2, h3, h4, .logo-main {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 900;
+  z-index: 1000;
   background: rgba(15, 19, 24, 0.88);
   backdrop-filter: blur(8px);
 }
@@ -114,6 +114,8 @@ h1, h2, h3, h4, .logo-main {
 }
 
 .header-cta-block {
+  position: relative;
+  z-index: 1001;
   background: var(--orange-gradient);
   height: 100%;
   width: 50%;
@@ -132,6 +134,7 @@ h1, h2, h3, h4, .logo-main {
   cursor: pointer;
   display: flex;
   align-items: center;
+  pointer-events: auto;
 }
 
 .quote-btn {
@@ -143,6 +146,7 @@ h1, h2, h3, h4, .logo-main {
   font-size: 0.92rem;
   font-weight: 500;
   cursor: pointer;
+  pointer-events: auto;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -163,6 +167,7 @@ h1, h2, h3, h4, .logo-main {
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
+  pointer-events: auto;
 }
 
 .hamburger-btn span {
@@ -173,8 +178,6 @@ h1, h2, h3, h4, .logo-main {
 }
 
 /* ================= HERO SECTION ================= */
-/* ================= EXACT VIDEO STAGGERED HERO ANIMATION ================= */
-/* ================= LIVE LOOPING INDUSTRIAL BACKGROUND VIDEO ================= */
 .hero-section {
   position: relative;
   overflow: hidden;
@@ -199,6 +202,7 @@ h1, h2, h3, h4, .logo-main {
   position: absolute;
   inset: 0;
   z-index: 1;
+  pointer-events: none;
   background: linear-gradient(
     180deg,
     rgba(14, 18, 23, 0.68) 0%,
@@ -225,6 +229,7 @@ h1, h2, h3, h4, .logo-main {
   background-color: #EB6838;
   color: #FFFFFF;
 }
+
 /* ================= LEFT SIDE SOCIAL BAR + HOVER LINK PREVIEW ================= */
 .hero-socials {
   position: fixed;
@@ -285,18 +290,6 @@ h1, h2, h3, h4, .logo-main {
 }
 
 /* Vertical "Follow Us On :" label below the 3 logos */
-.follow-label {
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  margin-top: 16px;
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 2px;
-  color: #FFFFFF;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
-}
-
-/* Vertical "Follow Us On :" label below social icons */
 .follow-label {
   writing-mode: vertical-rl;
   transform: rotate(180deg);
@@ -883,29 +876,42 @@ h1, h2, h3, h4, .logo-main {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.78);
-  z-index: 1000;
+  z-index: 2000 !important;
+  padding: 16px;
   display: none;
   align-items: center;
   justify-content: center;
+  pointer-events: none;
 }
 
-.drawer-backdrop.active {
-  display: flex;
+.drawer-backdrop.active,
+.drawer-backdrop.open,
+.drawer-backdrop.show {
+  display: flex !important;
   justify-content: flex-end;
+  padding: 0;
+  pointer-events: auto !important;
 }
 
-.modal-backdrop.active {
-  display: flex;
+.modal-backdrop.active,
+.modal-backdrop.open,
+.modal-backdrop.show {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto !important;
 }
 
 .drawer-panel {
   width: 340px;
+  max-width: 85vw;
   height: 100%;
   background: #11151B;
   padding: 40px 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  pointer-events: auto;
 }
 
 .close-drawer,
@@ -914,6 +920,7 @@ h1, h2, h3, h4, .logo-main {
   border: none;
   color: var(--white);
   font-size: 2rem;
+  line-height: 1;
   cursor: pointer;
   align-self: flex-end;
 }
@@ -952,9 +959,12 @@ h1, h2, h3, h4, .logo-main {
   border: 1px solid #2A313C;
   width: 92%;
   max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
   padding: 32px;
   display: flex;
   flex-direction: column;
+  pointer-events: auto;
 }
 
 .modal-card h3 {
@@ -974,6 +984,7 @@ h1, h2, h3, h4, .logo-main {
   background: #0B0E12;
   border: 1px solid #2C3440;
   color: var(--white);
+  color-scheme: dark;
   padding: 12px 14px;
   font-family: inherit;
   font-size: 0.9rem;
@@ -986,6 +997,11 @@ h1, h2, h3, h4, .logo-main {
   padding: 14px;
   font-weight: 600;
   cursor: pointer;
+}
+
+.submit-quote-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
 }
 
 .form-feedback {
@@ -1046,12 +1062,11 @@ h1, h2, h3, h4, .logo-main {
   background: #0d1015 url('assets/hero-bg.jpg') center/cover no-repeat;
 }
 
-/* Lock video behind everything so it never pushes text off-screen */
-
 .hero-overlay {
   position: absolute !important;
   inset: 0;
   z-index: 1 !important;
+  pointer-events: none !important;
   background: linear-gradient(
     180deg,
     rgba(14, 18, 23, 0.68) 0%,
@@ -1457,6 +1472,7 @@ h1, h2, h3, h4, .logo-main {
   font-weight: 600;
   border-radius: 3px;
   cursor: pointer;
+  pointer-events: auto;
 }
 
 .mini-quote-btn:hover {
@@ -1564,6 +1580,7 @@ h1, h2, h3, h4, .logo-main {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  pointer-events: auto;
 }
 
 .lightbox-header {
@@ -1600,6 +1617,7 @@ h1, h2, h3, h4, .logo-main {
     grid-template-columns: 1fr;
   }
 }
+
 /* ================= OUR TRUSTED PARTNERS (2 IN A ROW, SAME WIDTH & SIZE) ================= */
 .partners-section {
   background: #FFFFFF;
