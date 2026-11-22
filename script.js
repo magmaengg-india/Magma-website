@@ -167,37 +167,39 @@ document.addEventListener('DOMContentLoaded', () => {
     quoteModal.addEventListener('click', (e) => {
       if (e.target === quoteModal) quoteModal.classList.remove('active');
     });
+
   }
-  if (quoteForm) {
-    quoteForm.addEventListener('submit', (e) => {
-      e.preventDefault();
+ if (quoteForm) {
+  quoteForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if (quoteFeedback) {
+      quoteFeedback.textContent = 'Sending your request...';
+    }
+
+    try {
+      const response = await fetch(quoteForm.action, {
+        method: 'POST',
+        body: new FormData(quoteForm),
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        if (quoteFeedback) {
+          quoteFeedback.textContent = 'Thank you! Your quote request has been sent successfully.';
+        }
+        quoteForm.reset();
+      } else {
+        if (quoteFeedback) {
+          quoteFeedback.textContent = 'Unable to send your request. Please try again.';
+        }
+      }
+    } catch (error) {
       if (quoteFeedback) {
-        quoteFeedback.textContent = 'Thank you! Magma Engineering (Chennai) will contact you shortly with your quotation.';
+        quoteFeedback.textContent = 'Something went wrong. Please try again.';
       }
-      quoteForm.reset();
-    });
-  }
-
-  // ================= 5. NEWSLETTER & SCROLL-TO-TOP =================
-  const newsletterForm = document.getElementById('newsletterForm');
-  const newsletterFeedback = document.getElementById('newsletterFeedback');
-  if (newsletterForm) {
-    newsletterForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      if (newsletterFeedback) {
-        newsletterFeedback.textContent = 'Subscribed! You will receive industrial updates from Marking India.';
-      }
-      newsletterForm.reset();
-    });
-  }
-
-  const scrollTopBtn = document.getElementById('scrollTopBtn');
-  if (scrollTopBtn) {
-    window.addEventListener('scroll', () => {
-      scrollTopBtn.classList.toggle('visible', window.scrollY > 450);
-    });
-    scrollTopBtn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-});
+    }
+  });
+}

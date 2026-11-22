@@ -545,7 +545,6 @@
       </div>
     </div>
   </div>
-  <!-- ================= OUR TRUSTED PARTNERS (WHITE BACKGROUND) ================= -->
   <!-- ================= OUR TRUSTED PARTNERS (2 IN A ROW, UNIFORM SIZE) ================= -->
   <section class="partners-section" id="partners">
     <div class="container">
@@ -580,28 +579,6 @@
           <img src="assets/wheels india.jfif" alt="Wheels India Limited" />
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ================= NEWSLETTER SUBSCRIPTION BANNER (ORANGE GRADIENT) ================= -->
-  <section class="newsletter-section">
-    <div class="container newsletter-grid">
-      <div class="newsletter-text">
-        <p class="eyebrow-light">Newsletter Subscription</p>
-        <h2>Get Instant Industrial updates!</h2>
-      </div>
-
-      <form class="newsletter-form" id="newsletterForm">
-        <div class="input-group">
-          <input type="email" id="newsletterEmail" placeholder="Enter mail ID" required />
-          <button type="submit">Subscribe</button>
-        </div>
-        <label class="privacy-check">
-          <input type="checkbox" checked required />
-          <span>Your email is safe with us, we don't spam. <a href="#">Privacy Policy</a></span>
-        </label>
-        <p class="form-feedback" id="newsletterFeedback"></p>
-      </form>
     </div>
   </section>
 
@@ -741,19 +718,19 @@
       <button class="close-modal" id="closeQuoteBtn">&times;</button>
       <p class="eyebrow-gold">Fast Industrial Quotation</p>
       <h3>Request A Quote</h3>
-      <form id="quoteForm" class="quote-form">
-        <input type="text" placeholder="Your Name / Company Name" required />
-        <input type="tel" placeholder="Phone Number (+91)" required />
-        <input type="email" placeholder="Work Email Address" required />
-        <select required>
+      <form id="quoteForm" class="quote-form" action="https://formspree.io/f/mppdypzy" method="POST">
+        <input type="text" name="name" placeholder="Your Name / Company Name" required />
+        <input type="tel" name="phone" placeholder="Phone Number (+91)" />
+        <input type="email" name="email" placeholder="Work Email Address" required />
+        <select name="machine_category" required>
           <option value="">Select Machine Category</option>
-          <option>Fiber Laser Marking Machine (30W / 60W / 120W MOPA)</option>
-          <option>CO₂ / UV Laser Marking Machine</option>
-          <option>Hand Held Cordless Dot Peen Machine (ME-TC 155)</option>
-          <option>Column Dot Peen Machine (ME-PC / ME-TC)</option>
-          <option>Laser Cutting / Engraving System</option>
+          <option value="Fiber Laser Marking Machine (30W / 60W / 120W MOPA)">Fiber Laser Marking Machine (30W / 60W / 120W MOPA)</option>
+          <option value="CO₂ / UV Laser Marking Machine">CO₂ / UV Laser Marking Machine</option>
+          <option value="Hand Held Cordless Dot Peen Machine (ME-TC 155)">Hand Held Cordless Dot Peen Machine (ME-TC 155)</option>
+          <option value="Column Dot Peen Machine (ME-PC / ME-TC)">Column Dot Peen Machine (ME-PC / ME-TC)</option>
+          <option value="Laser Cutting / Engraving System">Laser Cutting / Engraving System</option>
         </select>
-        <textarea rows="3" placeholder="Material to mark (e.g., Stainless Steel, Aluminum, PCB, Plastic)..."></textarea>
+        <textarea name="material" rows="3" placeholder="Material to mark (e.g., Stainless Steel, Aluminum, PCB, Plastic)..."></textarea>
         <button type="submit" class="submit-quote-btn">Submit Quote Request &rarr;</button>
       </form>
       <p class="form-feedback" id="quoteFeedback"></p>
